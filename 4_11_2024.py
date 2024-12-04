@@ -1,10 +1,14 @@
 
 class Stack:
-    def __init__(self):
+    def __init__(self, max_size=None):
         self.items = []
+        self.max_size = max_size
 
     def push(self, item):
-        self.items.append(item)
+        if self.max_size is not None and len(self.items) >= self.max_size:
+            print(f"Error: Stack overflow, item '{item}' cannot be pushed")
+        else:
+            self.items.append(item)
 
     def pop(self):
         if not self.isEmpty():
@@ -26,7 +30,7 @@ class Stack:
         return str(self.items)
 
 # Příklad použití:
-stack = Stack()
+stack = Stack(max_size=2)
 stack.push(1)
 stack.push(2)
 stack.push(3)
@@ -36,4 +40,5 @@ print(stack.top())
 stack.pop()
 print(stack)
 print(stack.isEmpty())
-print(stack.actual_size())  
+print(stack.actual_size())
+
